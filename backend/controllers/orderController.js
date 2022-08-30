@@ -32,7 +32,7 @@ const makeOrder = asyncHandler(async (req, res) => {
       _id: newOrder._id,
     });
   } else {
-    res.status(400); // daddy nooooooooo
+    res.status(400);
     throw new Error("Unable to create a new order");
   }
 });
