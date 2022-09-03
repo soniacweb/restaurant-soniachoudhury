@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 // import { addToOrder, removeFromOrder } from "../actions/orderActions";
-import { Box, Grid, Paper, Typography, ButtonBase } from "@mui/material";
+import { Grid, Paper, Typography, ButtonBase } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const Img = styled("img")({
@@ -14,8 +14,6 @@ const Img = styled("img")({
 
 const YourOrder = ({ itemId, location }) => {
   const orderList = useSelector((state) => state.order);
-  const [price, setPrice] = useState();
-  console.log("orderlist", orderList);
 
   const {
     userOrder: { orderItems },
@@ -23,27 +21,9 @@ const YourOrder = ({ itemId, location }) => {
 
   console.log(orderItems);
 
-  // useEffect(() => {
-  //   if (itemId) {
-  //     dispatch(addToOrder(itemId, qty));
-  //   }
-  // }, [dispatch, itemId, qty]);
-
-  // const removeFromYourOrderHandler = (id) => {
-  //   dispatch(removeFromOrder(id));
-  // };
-
-  // const checkoutHandler = () => {
-  //   history.push("/login?redirect=payment");
-  // };
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  const total = orderItems.reduce((accumulator, currentValue) => {
+    return parseInt(accumulator) + parseInt(currentValue.price);
+  }, 0);
 
   return (
     <>
@@ -88,7 +68,7 @@ const YourOrder = ({ itemId, location }) => {
               </Grid>
               <Grid item>
                 <Typography variant="subtitle1" component="div">
-                  Price: £{item.price}0
+                  Price: £{Number(item.price).toFixed(2)}
                 </Typography>
               </Grid>
             </Grid>
@@ -115,10 +95,7 @@ const YourOrder = ({ itemId, location }) => {
                 style={{ margin: "50px auto", fontSize: "20px" }}
                 variant="title"
               >
-                Total: £
-                {orderItems.reduce(function (accumulator, currentValue) {
-                  return Number(accumulator) + Number(currentValue.price);
-                }, 0)}
+                Total: £{total.toFixed(2)}
               </Typography>
             </Grid>
           </Grid>

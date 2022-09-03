@@ -64,6 +64,7 @@ export const createOrderAfterTableSelection =
 export const addToOrder =
   (orderId, itemObject, qty) => async (dispatch, getState) => {
     console.log("hello from addtocart, orderId:", orderId);
+    console.log("item object", itemObject);
     try {
       dispatch({
         type: ORDER_ADD_REQUEST,

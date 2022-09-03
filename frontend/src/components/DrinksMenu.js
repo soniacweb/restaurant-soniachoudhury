@@ -13,9 +13,9 @@ const DrinksMenu = () => {
   const drinksMenuList = useSelector((state) => state.drinksMenu);
   const { loading, error, drinksMenu } = drinksMenuList;
   const [drinksList, setDrinksList] = useState([]);
-  const [expanded, setExpanded] = useState(false);
   // console.log("drinks", drinksMenu);
 
+  console.log(drinksList);
   useEffect(() => {
     dispatch(listDrinksMenu());
   }, [dispatch]);
@@ -23,10 +23,6 @@ const DrinksMenu = () => {
   useEffect(() => {
     setDrinksList(drinksMenu);
   }, [drinksMenu]);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   const handleClick = (e) => {
     // console.log("E", e.target.innerText);
@@ -72,12 +68,7 @@ const DrinksMenu = () => {
           >
             {drinksList &&
               drinksList.map((item, i) => {
-                return (
-                  <ModalItem
-                    key={item.name ? item.dishName : item.dinksName}
-                    item={item}
-                  />
-                );
+                return <ModalItem key={item.dinkName} item={item} />;
               })}
           </ImageList>
         </Box>

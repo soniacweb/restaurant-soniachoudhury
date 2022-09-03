@@ -39,10 +39,7 @@ const ModalItem = ({ item }) => {
   // get newly created empty orderItem from store (state) and get the ID
 
   const orderId = useSelector((state) => state.order.userOrder.order);
-  // const order = useSelector((state) => console.log("state", state));
 
-  // const { loading, error, orderItems } = order;
-  // console.log("orderrrr", order);
   console.log("orderrrr iddd", orderId);
 
   const handleClick = (item, qty) => {
@@ -69,22 +66,7 @@ const ModalItem = ({ item }) => {
     setQty(Number(qty - 1));
   };
 
-  // console.log(
-  //   "what im passing in",
-  //   "order ID:",
-  //   orderId,
-  //   "item object:",
-  //   item,
-  //   "qty:",
-  //   qty
-  // );
-
   return (
-    // <Stack
-    //   direction={{ xs: "column", sm: "column" }}
-    //   spacing={{ xs: 1, sm: 2, md: 4 }}
-
-    // >
     <ImageListItem key={item.dishName}>
       <img
         src={item.image}
@@ -94,19 +76,15 @@ const ModalItem = ({ item }) => {
       />
 
       <ImageListItemBar
-        title={item.dishName}
-        subtitle={
-          toString(item.price).length <= 2
-            ? `£${item.price}.00`
-            : toString(item.price).length <= 4
-            ? `£${item.price}0`
-            : `£${item.price}`
-        }
+        title={item.dishName ? item.dishName : item.drinkName}
+        subtitle={item.price.toFixed(2)}
         actionIcon={
           <>
             <IconButton
               sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-              aria-label={`info about ${item.dishName}`}
+              aria-label={`info about ${
+                item.dishName ? item.dishName : item.drinkName
+              }`}
             >
               {/* <Link to={`/mainmenu/${item._id}`}> */}
               <InfoIcon onClick={handleOpen} />
@@ -114,7 +92,9 @@ const ModalItem = ({ item }) => {
             </IconButton>
             <IconButton
               sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-              aria-label={`info about ${item.dishName}`}
+              aria-label={`info about ${
+                item.dishName ? item.dishName : item.drinkName
+              }`}
             ></IconButton>
           </>
         }
@@ -129,7 +109,7 @@ const ModalItem = ({ item }) => {
       >
         <Box sx={style}>
           <Typography>
-            {item.dishName ? item.dishName : item.drinksName}
+            {item.dishName ? item.dishName : item.drinkName}
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             May contain:
@@ -164,7 +144,6 @@ const ModalItem = ({ item }) => {
         </Box>
       </Modal>
     </ImageListItem>
-    // </Stack>
   );
 };
 

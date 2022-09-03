@@ -105,3 +105,17 @@ Order::table_id -- Table::id
 
 
 ```
+
+# Interacting with Postman to test api endpoints
+
+<p align="center">
+<img src="./assets/Postman.png " width="900" />
+</p>
+
+# Interacting with MongoDB Compass
+
+#### Adding items to an order and associating a user id and a table id to the order:
+
+<p align="center">
+<img src="./assets/MongoDB.png " width="900" />
+</p>
