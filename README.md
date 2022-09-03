@@ -7,6 +7,7 @@
 - React (npx create react)
 - Material UI
 - Styled Components
+- Email.js
 
 ### ⚙️ Backend
 
